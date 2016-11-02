@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>{{ 'user.form.username_label'|trans }}</th>
                                     <th>{{ 'user.form.email_label'|trans }}</th>
+                                    <th>{{ 'user.form.group'|trans }}</th>
                                     <th>{{ 'user.form.last_login_label'|trans }}</th>
                                     <th>{{ 'user.list.actions'|trans }}</th>
                                 </tr>
@@ -25,6 +26,12 @@
                                 <tr>
                                     <td>{{ user.username }}</td>
                                     <td>{{ user.email }}</td>
+                                    <td>
+                                        {% for group in user.groupNames %}
+                                            {{ group }}
+                                            {% if not loop.last %},{% endif %}
+                                        {% endfor %}
+                                    </td>
                                     <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
                                     <td>
                                         <a href="{{ path('user_edit', { 'id': user.id }) }}">{{ 'user.list.edit_action'|trans }}</a>
