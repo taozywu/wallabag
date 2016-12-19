@@ -306,6 +306,8 @@ class EntryRestControllerTest extends WallabagApiTestCase
 
         $this->client->request('DELETE', '/api/entries/'.$entry->getId().'.json');
 
+        var_export($this->client->getResponse()->getContent());
+
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $content = json_decode($this->client->getResponse()->getContent(), true);
